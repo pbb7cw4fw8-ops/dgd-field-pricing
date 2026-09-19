@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101814">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DGD Field">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<title>DGD Field Pricing</title>
+<style>
+:root{
+ --ink:#142019;--muted:#6e786f;--line:#dfe4df;--paper:#f4f5f1;--card:#fff;
+ --forest:#153a2a;--forest2:#204c39;--mist:#e9efea;--sand:#e8e3d7;--danger:#9b3e34;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:#101814}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:760px;margin:auto;min-height:100vh;background:var(--paper)}
+.hero{background:linear-gradient(145deg,#101814,#173d2c);color:white;padding:calc(22px + env(safe-area-inset-top)) 18px 26px;border-radius:0 0 28px 28px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.66;font-weight:750}
+.heroRow{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:7px}
+.hero h1{font-size:29px;line-height:1.05;margin:0;font-weight:780;letter-spacing:-.035em}
+.heroSub{font-size:13px;opacity:.68;margin-top:7px}
+.mark{width:52px;height:45px;border:1px solid rgba(255,255,255,.25);border-radius:14px;display:grid;place-items:center;font-weight:850;letter-spacing:-.06em;background:rgba(255,255,255,.06)}
+.content{padding:16px 14px 44px}
+.sectionLabel{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:800;margin:5px 3px 9px}
+.services{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.service{min-height:78px;border:1px solid var(--line);background:var(--card);border-radius:17px;padding:13px;text-align:left;color:var(--ink);transition:.15s ease}
+.service .icon{display:flex;align-items:center;height:29px;margin-bottom:8px;color:var(--forest)}.service .icon svg{width:42px;height:28px;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.service.active .icon{color:white}
+.service .name{display:block;font-size:14px;font-weight:760}
+.service .mini{display:block;font-size:11px;color:var(--muted);margin-top:3px;font-weight:520}
+.service.active{background:var(--forest);border-color:var(--forest);color:white;transform:translateY(-1px)}
+.service.active .mini{color:rgba(255,255,255,.65)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:21px;margin-top:13px;padding:16px}
+.jobHead{display:flex;justify-content:space-between;gap:12px;align-items:start;margin-bottom:16px}
+.jobTitle{font-size:20px;font-weight:790;letter-spacing:-.02em}
+.jobNote{font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px;max-width:470px}
+.badge{white-space:nowrap;background:var(--mist);color:var(--forest);font-size:11px;font-weight:800;border-radius:999px;padding:7px 9px}
+.field{margin-bottom:13px}
+label{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:730;color:#4f5a52;margin:0 2px 6px}
+.hint{font-weight:520;color:#8a928b}
+input[type=number]{appearance:none;width:100%;height:51px;border:1px solid #d7ddd8;border-radius:13px;background:#fafbf9;padding:0 13px;font-size:18px;color:var(--ink);outline:none}
+input[type=number]:focus{border-color:#789182;box-shadow:0 0 0 3px rgba(21,58,42,.08)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;border-top:1px solid #edf0ed;font-size:14px;font-weight:650}
+.switch{position:relative;width:47px;height:29px;flex:0 0 auto}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;border-radius:999px;background:#d9ded9;transition:.2s}
+.slider:before{content:"";position:absolute;width:23px;height:23px;left:3px;top:3px;border-radius:50%;background:white;box-shadow:0 1px 3px rgba(0,0,0,.18);transition:.2s}
+.switch input:checked+.slider{background:var(--forest)}
+.switch input:checked+.slider:before{transform:translateX(18px)}
+.hidden{display:none!important}
+.quote{background:var(--forest);color:white;border:0;padding:18px}
+.quoteTop{display:flex;justify-content:space-between;align-items:start;gap:10px}
+.quoteLabel{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.57);font-weight:800}
+.total{font-size:39px;line-height:1;font-weight:820;letter-spacing:-.045em;margin:7px 0 5px}
+.inc{font-size:11px;color:rgba(255,255,255,.58)}
+.quoteRows{margin-top:17px;padding-top:11px;border-top:1px solid rgba(255,255,255,.13)}
+.qrow{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:13px;color:rgba(255,255,255,.72)}
+.qrow strong{color:white;font-weight:680}
+.qrow.em{font-size:15px;color:white;padding-top:9px}
+.calcNote{margin-top:13px;background:rgba(255,255,255,.08);border-radius:12px;padding:10px 11px;font-size:12px;line-height:1.4;color:rgba(255,255,255,.72)}
+.actions{display:grid;grid-template-columns:1.25fr .75fr;gap:9px;margin-top:11px}
+.action{min-height:51px;border-radius:14px;border:1px solid var(--line);background:white;color:var(--ink);font-weight:760}
+.action.primary{background:var(--forest);border-color:var(--forest);color:white}
+.toast{text-align:center;min-height:20px;font-size:12px;color:var(--forest);padding-top:6px}
+details{background:white;border:1px solid var(--line);border-radius:18px;margin-top:13px;overflow:hidden}
+summary{list-style:none;min-height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;font-size:14px;font-weight:760;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"＋";font-size:20px;color:var(--muted);font-weight:400}
+details[open] summary:after{content:"−"}
+.settings{border-top:1px solid var(--line);padding:14px}
+.settingsTitle{font-size:11px;color:var(--muted);line-height:1.45;margin-bottom:11px}
+.rateGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.rateField label{font-size:11px}
+.rateField input{height:45px;font-size:16px}
+.footer{text-align:center;color:#9aa19b;font-size:10px;margin-top:18px;line-height:1.5}
+@media(min-width:600px){.services{grid-template-columns:repeat(4,1fr)}.content{padding-left:20px;padding-right:20px}.hero{padding-left:24px;padding-right:24px}.two.wide{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body><main class="app">
+<header class="hero">
+ <div class="eyebrow">Dark Green Design</div>
+ <div class="heroRow"><div><h1>Field Pricing</h1><div class="heroSub">Fast commercial pricing. No guesswork.</div></div><div class="mark">DGD</div></div>
+</header>
+<div class="content">
+ <div class="sectionLabel">Choose service</div>
+ <div class="services">
+  <button class="service active" data-s="exc"><span class="icon" aria-hidden="true"><svg viewBox="0 0 52 32"><path d="M5 24h25M10 24l4-6h16l5 6M17 18v-9h12l7 9M20 9l4-5h7l5 14M36 18l8 2 3 5-8 2M10 27c0 2 2 3 5 3h17c3 0 5-1 5-3s-2-3-5-3H15c-3 0-5 1-5 3Z"/></svg></span><span class="name">Excavator</span><span class="mini">$210/hr · $1,680/day</span></button>
+  <button class="service" data-s="crane"><span class="icon" aria-hidden="true"><svg viewBox="0 0 52 32"><path d="M4 23h34v5H4zM9 23v-9h13l6 9M29 22V10M29 10l18-6M35 8l5 14M47 4v13M44 17h6M10 29a3 3 0 1 0 0-6M32 29a3 3 0 1 0 0-6"/></svg></span><span class="name">Crane truck</span><span class="mini">$180/hr + travel</span></button>
+  <button class="service" data-s="tree"><span class="icon" aria-hidden="true"><svg viewBox="0 0 52 32"><path d="M25 29V15M25 20l-7-6M25 18l8-7M15 15c-5 0-7-4-5-8 2-3 6-4 9-2 2-4 8-5 11-1 5-2 10 2 9 7 5 1 6 8 1 10-3 2-7 1-9-1M20 29h10M40 23l7 6M47 23l-7 6"/></svg></span><span class="name">Tree care</span><span class="mini">$1,550/day</span></button>
+  <button class="service" data-s="skill"><span class="icon" aria-hidden="true"><svg viewBox="0 0 52 32"><path d="M8 27L28 7M24 5l6-2 4 4-2 6M7 21l6 6M35 12l10 10M40 7l5 5-5 5-5-5zM24 23l6 6"/></svg></span><span class="name">Skilled work</span><span class="mini">$165/hr · $1,300/day</span></button>
+ </div>
+
+ <section class="card">
+  <div class="jobHead"><div><div class="jobTitle" id="jobTitle"></div><div class="jobNote" id="jobNote"></div></div><div class="badge">EX GST</div></div>
+  <div class="field"><label for="hrs"><span>Chargeable time</span><span class="hint">hours</span></label><input id="hrs" type="number" inputmode="decimal" min="0" step=".25" value="8"><div class="jobNote" id="help"></div></div>
+  <div class="field hidden" id="kmWrap"><label for="km"><span>Travel</span><span class="hint">kilometres</span></label><input id="km" type="number" inputmode="decimal" min="0" step="1" value="0"></div>
+  <div id="treeOpts" class="hidden">
+   <div class="toggle"><span>Ground worker</span><label class="switch"><input id="ground" type="checkbox"><span class="slider"></span></label></div>
+   <div class="toggle"><span>Incidental Hino transport</span><label class="switch"><input id="hino" type="checkbox"><span class="slider"></span></label></div>
+  </div>
+  <div class="two wide">
+   <div class="field"><label for="mat">Materials / outside costs</label><input id="mat" type="number" inputmode="decimal" min="0" value="0"></div>
+   <div class="field"><label for="markup">Materials markup <span class="hint">%</span></label><input id="markup" type="number" inputmode="decimal" min="0" max="200" value="25"></div>
+   <div class="field"><label for="extra">Other / disposal</label><input id="extra" type="number" inputmode="decimal" min="0" value="0"></div>
+   <div class="field"><label for="adj">Adjustment</label><input id="adj" type="number" inputmode="decimal" value="0"></div>
+  </div>
+ </section>
+
+ <section class="card quote">
+  <div class="quoteTop"><div><div class="quoteLabel">Customer total</div><div class="total" id="inc">$0.00</div><div class="inc">including GST</div></div><div class="badge">READY TO QUOTE</div></div>
+  <div class="quoteRows">
+   <div class="qrow"><span>Service</span><strong id="sc"></strong></div>
+   <div class="qrow"><span>Materials incl. markup</span><strong id="mc"></strong></div>
+   <div class="qrow"><span>Extras / adjustment</span><strong id="ec"></strong></div>
+   <div class="qrow em"><span>Ex GST</span><strong id="ex"></strong></div>
+   <div class="qrow"><span>GST</span><strong id="gst"></strong></div>
+  </div>
+  <div class="calcNote" id="calcNote"></div>
+ </section>
+
+ <div class="actions"><button class="action primary" id="copy">Copy customer quote</button><button class="action" id="reset">Reset</button></div>
+ <div class="toast" id="toast" aria-live="polite"></div>
+
+ <details>
+  <summary>Business rate settings</summary>
+  <div class="settings"><div class="settingsTitle">These are your underlying commercial rates. Change them here later without rebuilding the calculator. Values are saved by the browser where supported.</div>
+   <div class="rateGrid">
+    <div class="rateField"><label>Excavator $/hr</label><input data-r="excHr" type="number"></div>
+    <div class="rateField"><label>Excavator 8hr day</label><input data-r="excDay" type="number"></div>
+    <div class="rateField"><label>Crane $/hr</label><input data-r="craneHr" type="number"></div>
+    <div class="rateField"><label>Crane minimum</label><input data-r="craneMin" type="number"></div>
+    <div class="rateField"><label>Crane $/km</label><input data-r="craneKm" type="number" step=".1"></div>
+    <div class="rateField"><label>Tree half day</label><input data-r="treeHalf" type="number"></div>
+    <div class="rateField"><label>Tree full day</label><input data-r="treeDay" type="number"></div>
+    <div class="rateField"><label>Ground worker $/hr</label><input data-r="groundHr" type="number"></div>
+    <div class="rateField"><label>Ground worker day</label><input data-r="groundDay" type="number"></div>
+    <div class="rateField"><label>Hino incidental</label><input data-r="hino" type="number"></div>
+    <div class="rateField"><label>Skilled $/hr</label><input data-r="skillHr" type="number"></div><div class="rateField"><label>Skilled half day</label><input data-r="skillHalf" type="number"></div>
+    <div class="rateField"><label>Skilled full day</label><input data-r="skillDay" type="number"></div>
+    <div class="rateField"><label>Skilled minimum</label><input data-r="skillMin" type="number"></div>
+    <div class="rateField"><label>GST %</label><input data-r="gst" type="number"></div>
+   </div>
+  </div>
+ </details>
+ <div class="footer">DARK GREEN DESIGN · INTERNAL FIELD TOOL<br>Rates are editable in Business rate settings.</div>
+</div>
+<script>
+(()=>{const D=document,$=x=>D.getElementById(x),Q=s=>[...D.querySelectorAll(s)];
+const def={excHr:210,excDay:1680,craneHr:180,craneMin:360,craneKm:1.5,treeHalf:950,treeDay:1550,groundHr:75,groundDay:600,hino:100,skillHr:165,skillHalf:800,skillDay:1300,skillMin:450,gst:10};
+let r={...def},s="exc";try{r={...r,...JSON.parse(localStorage.getItem("dgdFieldRatesV2")||"{}")}}catch(e){}
+const n=(id,neg=false)=>{let v=Number($(id).value);if(!Number.isFinite(v))v=0;return neg?v:Math.max(0,v)};
+const aud=v=>new Intl.NumberFormat("en-AU",{style:"currency",currency:"AUD"}).format(v);
+const meta={
+ exc:["Excavator + operator",()=>`${aud(r.excHr)}/hr · ${aud(r.excDay)} per 8-hour day. Mobilisation is chargeable time.`],
+ crane:["Crane truck + operator",()=>`${aud(r.craneHr)}/hr · ${aud(r.craneMin)} minimum · ${aud(r.craneKm)}/km travel.`],
+ tree:["Tree care + Bandit chipper",()=>`${aud(r.treeHalf)} half day · ${aud(r.treeDay)} full day. Local chipper transport included.`],
+ skill:["Skilled site work",()=>`${aud(r.skillHr)}/hr · ${aud(r.skillHalf)} half day · ${aud(r.skillDay)} full day.`]
+};
+function servicePrice(h){
+ if(s==="exc"){return h===8?[r.excDay,`8-hour excavator day · ${aud(r.excDay)} ex GST`]:[h*r.excHr,`${h.toFixed(2)} hrs × ${aud(r.excHr)}/hr`]}
+ if(s==="crane"){let km=n("km"),time=Math.max(h*r.craneHr,h>0?r.craneMin:0);return[time+km*r.craneKm,`${h.toFixed(2)} hrs crane time${h>0&&h<2?" · 2-hour minimum applied":""} · ${km.toFixed(0)} km travel`]}
+ if(s==="tree"){let base=0,label="No tree-care time entered";if(h>4){base=r.treeDay;label="Full-day tree care + chipper"}else if(h>0){base=r.treeHalf;label="Half-day tree care + chipper"}let g=$("ground").checked?(h>=8?r.groundDay:h*r.groundHr):0,hi=$("hino").checked?r.hino:0;return[base+g+hi,label+(g?` · ground worker ${aud(g)}`:"")+(hi?` · Hino ${aud(hi)}`:"")]}
+ let base=0,label="No skilled-work time entered";if(h>4){base=r.skillDay;label="Full-day skilled work"}else if(h>0){base=h>=3.5?r.skillHalf:Math.max(r.skillMin,h*r.skillHr);label=h>=3.5?"Half-day skilled work":`${h.toFixed(2)} hrs skilled work`};return[base,label]
+}
+function calc(){let h=n("hrs"),z=servicePrice(h),mat=n("mat")*(1+Math.min(200,n("markup"))/100),extra=n("extra")+n("adj",true),ex=Math.max(0,z[0]+mat+extra),gst=ex*r.gst/100,inc=ex+gst;
+$("sc").textContent=aud(z[0]);$("mc").textContent=aud(mat);$("ec").textContent=aud(extra);$("ex").textContent=aud(ex);$("gst").textContent=aud(gst);$("inc").textContent=aud(inc);$("calcNote").textContent=z[1];return{ex,gst,inc,desc:z[1]}}
+function select(x){s=x;Q(".service").forEach(b=>b.classList.toggle("active",b.dataset.s===s));$("jobTitle").textContent=meta[s][0];$("jobNote").textContent=meta[s][1]();$("kmWrap").classList.toggle("hidden",s!=="crane");$("treeOpts").classList.toggle("hidden",s!=="tree");$("help").textContent=s==="exc"?"Clock starts when loading begins and finishes when you are back and unloaded.":"Enter the total chargeable job time.";$("hrs").value=s==="crane"?2:8;calc()}
+Q("[data-r]").forEach(x=>{let k=x.dataset.r;x.value=r[k];x.addEventListener("input",()=>{let v=Number(x.value);if(Number.isFinite(v)&&v>=0){r[k]=v;try{localStorage.setItem("dgdFieldRatesV2",JSON.stringify(r))}catch(e){};$("jobNote").textContent=meta[s][1]();calc()}})});
+Q(".service").forEach(b=>b.addEventListener("click",()=>select(b.dataset.s)));
+Q("#hrs,#km,#mat,#markup,#extra,#adj,#ground,#hino").forEach(x=>x.addEventListener("input",calc));
+$("reset").addEventListener("click",()=>{["mat","extra","adj","km"].forEach(x=>$(x).value=0);$("markup").value=25;$("ground").checked=false;$("hino").checked=false;$("hrs").value=s==="crane"?2:8;calc()});
+$("copy").addEventListener("click",async()=>{let x=calc(),txt=`Dark Green Design\\n${meta[s][0]}\\n${x.desc}\\n\\nPrice ex GST: ${aud(x.ex)}\\nGST: ${aud(x.gst)}\\nTotal inc GST: ${aud(x.inc)}`;
+try{await navigator.clipboard.writeText(txt);$("toast").textContent="Customer quote copied to clipboard"}catch(e){$("toast").textContent="Copy is unavailable in this preview"}
+setTimeout(()=>$("toast").textContent="",2400)});
+select("exc");
+})();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+}
+</script></main></body></html>
